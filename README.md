@@ -44,7 +44,7 @@ FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选
 
 综上所述，我们相信“FreeAiResume”将成为用户信赖的智能简历管理与求职助手！！
 
-# 2025.02.07最新demo链接enjoy😄：待定
+# 2025.02.08最新demo链接enjoy😄：待定
 
 # 📫 How to reach us:
 - 官方WeChat:freeaicc
