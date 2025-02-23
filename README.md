@@ -47,6 +47,7 @@ FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选
 # 2025.02.23最新demo链接enjoy😄：待定
 
 # 📫 How to reach us:
+- 本源码是运营人员所上传，难免疏漏，还请原谅。
 - 官方WeChat:freeaicc
 - Skype：https://join.skype.com/invite/rVbQH1igkQwV
 - Skype UserID：live:.cid.fedb411de91d9b
