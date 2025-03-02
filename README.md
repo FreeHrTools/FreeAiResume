@@ -59,11 +59,12 @@ FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选
 
 # 📫 How to reach us:
 - 本源码是运营人员所上传，难免疏漏，还请原谅。
-- 官方WeChat:freeaicc
+- 官方WeChat:David_Li_Haiya
 - Skype：https://join.skype.com/invite/rVbQH1igkQwV
 - Skype UserID：live:.cid.fedb411de91d9b
 - Email:leehear@gmail.com 
-![image](https://github.com/user-attachments/assets/1da1fbaa-6da9-4b7f-99b9-f9ac6a5bfa39)
+![FreeAiClub-微信二维码](https://github.com/user-attachments/assets/b2c48e6a-9009-48d6-92cb-e57db9bb46e1)
+
 
 # FreeAiResume关于源码与付费
 付费购买源代码对应模块之后，可自用，可商用，你购买源代码之后，我方会安排对你进行一次源代码培训。
