@@ -1,6 +1,5 @@
-# FreeAiResume智能简历
-!
-FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选工具，简历优化，职业匹配，在线简历制作，个性化简历，大数据简历！！
+# FreeAiResume智能简历!!!
+FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选工具，简历优化，职业匹配，在线简历制作，个性化简历，大数据简历!!!
 
 # FreeAiResume智能简历基本功能
 
@@ -59,14 +58,15 @@ FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选
 
 # 📫 How to reach us:
 - 本源码是运营人员所上传，难免疏漏，还请原谅。
-- 官方WeChat:David_Li_Haiya
+- 官方WeChat:扫码下侧的企业微信二维码即可（可对公签合同，更有保障）
 - Skype：https://join.skype.com/invite/rVbQH1igkQwV
 - Skype UserID：live:.cid.fedb411de91d9b
 - Email:leehear@gmail.com 
-![FreeAiClub-微信二维码](https://github.com/user-attachments/assets/b2c48e6a-9009-48d6-92cb-e57db9bb46e1)
+
+![easyaicc-企业微信二维码](https://github.com/user-attachments/assets/9eda46f5-41b2-4481-a598-aa2f6a34aa54)
 
 
 # FreeAiResume关于源码与付费
 付费购买源代码对应模块之后，可自用，可商用，你购买源代码之后，我方会安排对你进行一次源代码培训。
 
-# 😄价值观：我们坚信，软件只有被用起来，才能给用户带去价值，才能让自身产生迭代！！！！！！
+# 😄价值观：我们坚信，软件只有被用起来，才能给用户带去价值，才能让自身产生迭代！！！
