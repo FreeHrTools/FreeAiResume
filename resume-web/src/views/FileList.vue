@@ -7,7 +7,7 @@
             <div class="operation-area">
                 <el-form :inline="true" :model="searchForm" @keyup.enter="handleSearch" class="search-form">
                     <el-form-item label="简历名称">
-                        <el-input v-model="searchForm.name" placeholder="请输入简历名称" clearable style="width: 150px" />
+                        <el-input v-model="searchForm.file_name" placeholder="请输入简历名称" clearable style="width: 150px" />
                     </el-form-item>
                     <el-form-item label="姓名">
                         <el-input v-model="searchForm.candidateName" placeholder="请输入姓名" clearable
@@ -31,7 +31,7 @@
                         {{ (currentPage - 1) * pageSize + $index + 1 }}
                     </template>
                 </el-table-column>
-                <el-table-column prop="name" label="简历名称" min-width="200" />
+                <el-table-column prop="file_name" label="简历名称" min-width="200" />
                 <el-table-column prop="candidateName" label="姓名" width="80" />
                 <el-table-column label="手机号" width="140">
                     <template #default="{ row }">
@@ -43,7 +43,7 @@
                         {{ maskEmail(row.email) }}
                     </template>
                 </el-table-column>
-                <el-table-column prop="uploadTime" label="上传时间" width="160" />
+                <el-table-column prop="upload_time" label="上传时间" width="160" />
                 <el-table-column prop="aiScore" label="AI评分" width="80">
                     <template #default="{ row }">
                         <el-tag :type="getScoreType(row.aiScore)">
@@ -74,23 +74,45 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Header from '../components/Header.vue'
+import axios from '../utils/apiUtils'
 
 const currentPage = ref(1)
 const pageSize = 10
+const loading = ref(false)
 
 const searchForm = ref({
-    name: '',
+    file_name: '',
     candidateName: '',
     phone: '',
     email: ''
 })
 
+const fileList = ref([])
+
+const fetchResumeList = async () => {
+    try {
+        loading.value = true
+        const response = await axios.post('/resumes/search', searchForm.value)
+        console.log('完整响应对象:', response)
+        console.log('响应状态:', response.status)
+        console.log('响应数据类型:', typeof response.data)
+        console.log('响应数据:', response.data)
+        fileList.value = response.resumes && Array.isArray(response.resumes) ? response.resumes : []
+        console.log('处理后的fileList:', fileList.value)
+    } catch (error) {
+        ElMessage.error('获取简历列表失败')
+        console.error('获取简历列表失败:', error)
+    } finally {
+        loading.value = false
+    }
+}
+
 const filteredList = computed(() => {
     return fileList.value.filter(item => {
-        const nameMatch = !searchForm.value.name || item.name.toLowerCase().includes(searchForm.value.name.toLowerCase())
+        const nameMatch = !searchForm.value.file_name || item.file_name.toLowerCase().includes(searchForm.value.file_name.toLowerCase())
         const candidateNameMatch = !searchForm.value.candidateName || item.candidateName.includes(searchForm.value.candidateName)
         const phoneMatch = !searchForm.value.phone || item.phone.includes(searchForm.value.phone)
         const emailMatch = !searchForm.value.email || item.email.toLowerCase().includes(searchForm.value.email.toLowerCase())
@@ -100,100 +122,19 @@ const filteredList = computed(() => {
 
 const handleSearch = () => {
     currentPage.value = 1
+    fetchResumeList()
 }
 
 const handleReset = () => {
     searchForm.value = {
-        name: '',
+        file_name: '',
         candidateName: '',
         phone: '',
         email: ''
     }
     currentPage.value = 1
+    fetchResumeList()
 }
-
-const fileList = ref([
-    {
-        id: 1,
-        name: '前端开发工程师简历.pdf',
-        candidateName: '张三',
-        phone: '13800138000',
-        email: 'zhangsan@example.com',
-        uploadTime: '2024-01-15 10:30:00',
-        status: '通过筛选',
-        aiScore: 85
-    },
-    {
-        id: 2,
-        name: '后端开发工程师简历.pdf',
-        candidateName: '李四',
-        phone: '13900139000',
-        email: 'lisi@example.com',
-        uploadTime: '2024-01-15 11:20:00',
-        status: '未通过筛选',
-        aiScore: 45
-    },
-    {
-        id: 3,
-        name: '产品经理简历.pdf',
-        candidateName: '王五',
-        phone: '13700137000',
-        email: 'wangwu@example.com',
-        uploadTime: '2024-01-15 14:15:00',
-        status: '待处理',
-        aiScore: 75
-    },
-    {
-        id: 4,
-        name: 'UI设计师简历.pdf',
-        candidateName: '赵六',
-        phone: '13600136000',
-        email: 'zhaoliu@example.com',
-        uploadTime: '2024-01-16 09:30:00',
-        status: '通过筛选',
-        aiScore: 88
-    },
-    {
-        id: 5,
-        name: '运维工程师简历.pdf',
-        candidateName: '钱七',
-        phone: '13500135000',
-        email: 'qianqi@example.com',
-        uploadTime: '2024-01-16 11:45:00',
-        status: '待处理',
-        aiScore: 72
-    },
-    {
-        id: 6,
-        name: '数据分析师简历.pdf',
-        candidateName: '孙八',
-        phone: '13400134000',
-        email: 'sunba@example.com',
-        uploadTime: '2024-01-16 14:20:00',
-        status: '未通过筛选',
-        aiScore: 55
-    },
-    {
-        id: 7,
-        name: '测试工程师简历.pdf',
-        candidateName: '周九',
-        phone: '13300133000',
-        email: 'zhoujiu@example.com',
-        uploadTime: '2024-01-17 10:15:00',
-        status: '通过筛选',
-        aiScore: 82
-    },
-    {
-        id: 8,
-        name: '算法工程师简历.pdf',
-        candidateName: '吴十',
-        phone: '13200132000',
-        email: 'wushi@example.com',
-        uploadTime: '2024-01-17 15:40:00',
-        status: '待处理',
-        aiScore: 78
-    }
-])
 
 const paginatedData = computed(() => {
     const start = (currentPage.value - 1) * pageSize
@@ -239,6 +180,10 @@ const handleDelete = (row) => {
 const handlePageChange = (page) => {
     currentPage.value = page
 }
+
+onMounted(() => {
+    fetchResumeList()
+})
 </script>
 
 <style scoped>

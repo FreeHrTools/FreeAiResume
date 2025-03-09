@@ -4,12 +4,12 @@
             <template #header>
                 <h2>登录</h2>
             </template>
-            <el-form :model="loginForm" :rules="rules" ref="loginFormRef">
-                <el-form-item prop="username">
-                    <el-input v-model="loginForm.username" placeholder="用户名" :prefix-icon="User" />
+            <el-form :model="loginForm" :rules="rules" ref="loginFormRef" label-width="120px">
+                <el-form-item label="邮箱/手机号" prop="username">
+                    <el-input v-model="loginForm.email" placeholder="请输入邮箱或手机号" :prefix-icon="User" />
                 </el-form-item>
-                <el-form-item prop="password">
-                    <el-input v-model="loginForm.password" type="password" placeholder="密码" :prefix-icon="Lock"
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" :prefix-icon="Lock"
                         show-password />
                 </el-form-item>
                 <el-form-item>
@@ -25,29 +25,39 @@ import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { User, Lock } from '@element-plus/icons-vue'
+import { post } from '../utils/apiUtils'
 
 const router = useRouter()
 const loginFormRef = ref(null)
 
 const loginForm = reactive({
-    username: '',
+    email: '',
     password: ''
 })
 
 const rules = {
-    username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+    email: [{ required: true, message: '请输入邮箱或手机号', trigger: 'blur' }],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 }
 
 const handleLogin = () => {
-    loginFormRef.value.validate((valid) => {
+    loginFormRef.value.validate(async (valid) => {
         if (valid) {
-            if (loginForm.username === 'admin' && loginForm.password === '123') {
-                sessionStorage.setItem('isAuthenticated', 'true')
-                ElMessage.success('登录成功')
-                router.push('/upload')
-            } else {
-                ElMessage.error('用户名或密码错误')
+            try {
+                const response = await post('http://127.0.0.1:8080/login', {
+                    email: loginForm.email,
+                    password: loginForm.password
+                })
+                if (response.token) {
+                    sessionStorage.setItem('token', response.token)
+                    sessionStorage.setItem('isAuthenticated', 'true')
+                    ElMessage.success('登录成功')
+                    router.push('/upload')
+                } else {
+                    ElMessage.error('登录失败：' + (response.message || '未知错误'))
+                }
+            } catch (error) {
+                ElMessage.error('登录失败：' + (error.message || '网络错误'))
             }
         }
     })
