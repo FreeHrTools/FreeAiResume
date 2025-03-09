@@ -1,5 +1,5 @@
-# FreeAiResume智能简历!!!
-FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选工具，简历优化，职业匹配，在线简历制作，个性化简历，大数据简历!!!!!!!!!!!!!
+# FreeAiResume智能简历
+FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选工具，简历优化，职业匹配，在线简历制作，个性化简历，大数据简历!!
 
 # FreeAiResume智能简历基本功能
 
@@ -43,7 +43,7 @@ FreeAiResume，智能简历，智能简历系统，AI简历填写，简历筛选
 
 综上所述，我们相信“FreeAiResume”将成为用户信赖的智能简历管理与求职助手！
 
-# 2025.03.07最新demo链接enjoy😄：待定
+# 2025.03.09最新demo链接enjoy😄：待定
 
 # 页面部分截图
 <img width="1450" alt="image" src="https://github.com/user-attachments/assets/9741376d-819b-48ff-a47d-8c2092ea30d7" />
